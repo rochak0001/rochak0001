@@ -5,10 +5,6 @@
   <img src="https://komarev.com/ghpvc/?username=rochak0001&label=Profile%20Views&color=0e75b6&style=flat" alt="rochak0001" />
 </p>
 
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
-</p>
-
 ---
 
 ### 👨‍💻 About Me  
@@ -16,8 +12,8 @@
 - 🎓 Pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
 - ☕ Skilled in **Core Java and OOPs**  
 - 💻 Focused on **Data Structures & Algorithms (DSA)**  
-- 🧩 Solving problems on **LeetCode** & **GeeksforGeeks (GFG)**  
-- 🌱 Exploring **Backend Development (Spring Boot, REST APIs)**  
+- 🧩 Solving problems on **LeetCode** & **GFG**  
+- 🌱 Exploring **Backend Development** (Spring Boot, APIs)  
 - 💬 Ask me about **Java, DSA, and Problem Solving**  
 - ⚡ Fun fact: *I love turning logic into working code!*  
 
@@ -37,7 +33,7 @@
 
 ---
 
-### 🧠 My Focus  
+### 🧠 My Focus
 
 > “I believe mastering Data Structures and Algorithms builds the foundation of great software engineering.”
 
@@ -49,15 +45,76 @@
 
 ---
 
-### 💡 Coding Vibes  
+### 💡 Coding Animation  
+// Java Core: Typing animation
+const javaCode = `public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}`;
+let index = 0;
+function startTyping() {
+    const display = document.getElementById('code-display');
+    display.textContent = '';
+    index = 0;
+    const interval = setInterval(() => {
+        display.textContent += javaCode[index];
+        index++;
+        if (index >= javaCode.length) clearInterval(interval);
+    }, 100);
+}
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/rochak0001/rochak0001/main/assets/coding.gif" alt="Coding animation" width="500"/>
-</p>
+// OOPs: Simple diagram animation
+function showOOPs() {
+    const diagram = document.getElementById('oops-diagram');
+    diagram.innerHTML = '<p>Class Animal</p><p>↓ Inheritance</p><p>Class Dog (Polymorphism)</p>';
+    setTimeout(() => {
+        diagram.innerHTML += '<p>Object created: Dog d = new Dog();</p>';
+    }, 2000);
+}
 
-*(Tip: Add a cool developer GIF inside an `assets/` folder in your repo and replace the link above.)*
+// DSA: Bubble Sort visualization
+function runBubbleSort() {
+    const viz = document.getElementById('sort-viz');
+    let arr = [64, 34, 25, 12, 22, 11, 90];
+    viz.innerHTML = arr.map(h => `<div class="bar" style="height:${h*3}px"></div>`).join('');
+    bubbleSort(arr);
+}
 
----
+async function bubbleSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                updateBars(arr);
+                await sleep(500);
+            }
+        }
+    }
+}
+
+function updateBars(arr) {
+    const bars = document.querySelectorAll('.bar');
+    bars.forEach((bar, i) => bar.style.height = `${arr[i]*3}px`);
+}
+
+function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+// DSA: Binary Tree growth
+function growTree() {
+    const viz = document.getElementById('tree-viz');
+    viz.innerHTML = '<div class="node">50</div>';
+    setTimeout(() => viz.innerHTML += '<div class="node">30</div><div class="node">70</div>', 1000);
+    setTimeout(() => viz.innerHTML += '<div class="node">20</div><div class="node">40</div><div class="node">60</div><div class="node">80</div>', 2000);
+}
+
+// Software Dev: Debug and Deploy
+function debugAndDeploy() {
+    const dev = document.getElementById('debug-deploy');
+    dev.innerHTML = '<p>Debugging: Error found!</p>';
+    setTimeout(() => dev.innerHTML = '<p>Fixed! Deploying to cloud...</p>', 2000);
+    setTimeout(() => dev.innerHTML += '<p>✅ Deployed! Software Engineer Badge Earned.</p>', 4000);
+}
 
 ### 📊 GitHub Stats  
 
@@ -84,16 +141,6 @@
 
 ---
 
-### 🚀 Featured Projects  
-
-| Project | Description | Tech Stack | Link |
-|----------|--------------|-------------|------|
-| 🧮 **DSA Tracker** | Track solved problems from LeetCode & GFG | Java, MySQL | [Repo](https://github.com/rochak0001/dsa-tracker) |
-| ☕ **Java Notes App** | Simple CRUD app using OOPs & File Handling | Java | [Repo](https://github.com/rochak0001/java-notes) |
-| 🌐 **Portfolio Website** | Personal portfolio site | HTML, CSS, JS | [Repo](https://github.com/rochak0001/portfolio) |
-
----
-
 ### 🧩 My Coding Philosophy  
 
 > 💭 *Good code is not just about syntax — it's about clarity, logic, and efficiency.*  
@@ -116,11 +163,4 @@
 
 <p align="center">
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
-</p>
-
----
-
-<p align="center">
-  <b>“Consistency is what transforms average into excellence.”</b><br>
-  — Rochak Prajapati
 </p>
