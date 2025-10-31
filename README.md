@@ -9,12 +9,12 @@
 
 ### 👨‍💻 About Me  
 
-- 🎓 Pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
-- ☕ Skilled in **Core Java and OOPs**  
-- 💻 Focused on **Data Structures & Algorithms (DSA)**  
-- 🧩 Solving problems on **LeetCode** & **GFG**  
-- 🌱 Exploring **Backend Development** (Spring Boot, APIs)  
-- 💬 Ask me about **Java, DSA, and Problem Solving**  
+- 🎓 I’m pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
+- ☕ I’m skilled in **Core Java and OOPs**  
+- 💻 I’m deeply focused on **Data Structures & Algorithms (DSA)**  
+- 🧩 I spend most of my time solving **LeetCode** problems and learning **problem-solving techniques**  
+- 🌱 Exploring **Software Development** and **Backend Technologies (Spring Boot, APIs)**  
+- 💬 Ask me about **Java, DSA, or Problem Solving**  
 - ⚡ Fun fact: *I love turning logic into working code!*  
 
 ---
@@ -40,81 +40,10 @@
 📈 Currently:
 - 🔹 Solving problems on **LeetCode** and **GFG**
 - 🔹 Revising **Striver’s DSA Sheet**
-- 🔹 Learning **System Design Basics**
-- 🔹 Working on small **Java + DSA Projects**
+- 🔹 Learning **System Design basics**
+- 🔹 Working on small **Java + DSA projects**
 
 ---
-
-### 💡 Coding Animation  
-// Java Core: Typing animation
-const javaCode = `public class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}`;
-let index = 0;
-function startTyping() {
-    const display = document.getElementById('code-display');
-    display.textContent = '';
-    index = 0;
-    const interval = setInterval(() => {
-        display.textContent += javaCode[index];
-        index++;
-        if (index >= javaCode.length) clearInterval(interval);
-    }, 100);
-}
-
-// OOPs: Simple diagram animation
-function showOOPs() {
-    const diagram = document.getElementById('oops-diagram');
-    diagram.innerHTML = '<p>Class Animal</p><p>↓ Inheritance</p><p>Class Dog (Polymorphism)</p>';
-    setTimeout(() => {
-        diagram.innerHTML += '<p>Object created: Dog d = new Dog();</p>';
-    }, 2000);
-}
-
-// DSA: Bubble Sort visualization
-function runBubbleSort() {
-    const viz = document.getElementById('sort-viz');
-    let arr = [64, 34, 25, 12, 22, 11, 90];
-    viz.innerHTML = arr.map(h => `<div class="bar" style="height:${h*3}px"></div>`).join('');
-    bubbleSort(arr);
-}
-
-async function bubbleSort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                updateBars(arr);
-                await sleep(500);
-            }
-        }
-    }
-}
-
-function updateBars(arr) {
-    const bars = document.querySelectorAll('.bar');
-    bars.forEach((bar, i) => bar.style.height = `${arr[i]*3}px`);
-}
-
-function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
-
-// DSA: Binary Tree growth
-function growTree() {
-    const viz = document.getElementById('tree-viz');
-    viz.innerHTML = '<div class="node">50</div>';
-    setTimeout(() => viz.innerHTML += '<div class="node">30</div><div class="node">70</div>', 1000);
-    setTimeout(() => viz.innerHTML += '<div class="node">20</div><div class="node">40</div><div class="node">60</div><div class="node">80</div>', 2000);
-}
-
-// Software Dev: Debug and Deploy
-function debugAndDeploy() {
-    const dev = document.getElementById('debug-deploy');
-    dev.innerHTML = '<p>Debugging: Error found!</p>';
-    setTimeout(() => dev.innerHTML = '<p>Fixed! Deploying to cloud...</p>', 2000);
-    setTimeout(() => dev.innerHTML += '<p>✅ Deployed! Software Engineer Badge Earned.</p>', 4000);
-}
 
 ### 📊 GitHub Stats  
 
@@ -125,15 +54,29 @@ function debugAndDeploy() {
 
 ---
 
-### 🧮 Top Languages  
+### 🏆 Achievements  
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rochak0001&layout=compact&theme=tokyonight&hide_border=true" />
+- 🥇 Solved 300+ DSA problems across LeetCode and GFG  
+- 💡 Strong understanding of **Java OOPs and Core Concepts**  
+- 🚀 Consistent learning habit & daily coding practice  
+- 🎯 Goal: To become a **Software Engineer at a top product-based company**
+
+---
+
+### 📬 Connect with Me  
+
+<p align="left">
+  <a href="https://www.linkedin.com/in/rochak0001" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="mailto:rochakprajapati0001@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
 </p>
 
 ---
 
-### 🏆 GitHub Trophies  
+### 🏅 GitHub Trophies  
 
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=rochak0001&theme=tokyonight&no-frame=true&row=1&column=6" alt="trophies"/>
@@ -141,26 +84,13 @@ function debugAndDeploy() {
 
 ---
 
+### 🔥 Fun Section  
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student)](https://git.io/typing-svg)
+
+---
+
 ### 🧩 My Coding Philosophy  
 
-> 💭 *Good code is not just about syntax — it's about clarity, logic, and efficiency.*  
+> I believe good code is not just about syntax — it's about **clarity, logic, and efficiency.**  
 > I strive to improve every day, one problem and one line of code at a time.
-
----
-
-### 📬 Connect with Me  
-
-<p align="center">
-  <a href="https://www.linkedin.com/in/rochak0001" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:rochakprajapati0001@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
-</p>
-
----
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
-</p>
