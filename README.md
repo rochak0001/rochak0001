@@ -9,12 +9,12 @@
 
 ### 👨‍💻 About Me  
 
-- 🎓 I’m pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
-- ☕ I’m skilled in **Core Java and OOPs**  
-- 💻 I’m deeply focused on **Data Structures & Algorithms (DSA)**  
-- 🧩 I spend most of my time solving **LeetCode** problems and learning **problem-solving techniques**  
-- 🌱 Exploring **Software Development** and **Backend Technologies (Spring Boot, APIs)**  
-- 💬 Ask me about **Java, DSA, or Problem Solving**  
+- 🎓 Pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
+- ☕ Skilled in **Core Java and OOPs**  
+- 💻 Focused on **Data Structures & Algorithms (DSA)**  
+- 🧩 Solving problems on **LeetCode** & **GFG**  
+- 🌱 Exploring **Backend Development** (Spring Boot, APIs)  
+- 💬 Ask me about **Java, DSA, and Problem Solving**  
 - ⚡ Fun fact: *I love turning logic into working code!*  
 
 ---
@@ -40,8 +40,16 @@
 📈 Currently:
 - 🔹 Solving problems on **LeetCode** and **GFG**
 - 🔹 Revising **Striver’s DSA Sheet**
-- 🔹 Learning **System Design basics**
-- 🔹 Working on small **Java + DSA projects**
+- 🔹 Learning **System Design Basics**
+- 🔹 Working on small **Java + DSA Projects**
+
+---
+
+### 💡 Coding Animation  
+
+<p align="center">
+  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="400" alt="coding gif"/>
+</p>
 
 ---
 
@@ -54,29 +62,15 @@
 
 ---
 
-### 🏆 Achievements  
+### 🧮 Top Languages  
 
-- 🥇 Solved 300+ DSA problems across LeetCode and GFG  
-- 💡 Strong understanding of **Java OOPs and Core Concepts**  
-- 🚀 Consistent learning habit & daily coding practice  
-- 🎯 Goal: To become a **Software Engineer at a top product-based company**
-
----
-
-### 📬 Connect with Me  
-
-<p align="left">
-  <a href="https://www.linkedin.com/in/rochak0001" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:rochakprajapati0001@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rochak0001&layout=compact&theme=tokyonight&hide_border=true" />
 </p>
 
 ---
 
-### 🏅 GitHub Trophies  
+### 🏆 GitHub Trophies  
 
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=rochak0001&theme=tokyonight&no-frame=true&row=1&column=6" alt="trophies"/>
@@ -84,14 +78,27 @@
 
 ---
 
-### 🔥 Fun Section  
+### 🧩 My Coding Philosophy  
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student)](https://git.io/typing-svg)
+> 💭 *Good code is not just about syntax — it's about clarity, logic, and efficiency.*  
+> I strive to improve every day, one problem and one line of code at a time.
 
 ---
 
-### 🧩 My Coding Philosophy  
+### 📬 Connect with Me  
 
-> I believe good code is not just about syntax — it's about **clarity, logic, and efficiency.**  
-> I strive to improve every day, one problem and one line of code at a time.
+<p align="center">
+  <a href="https://www.linkedin.com/in/rochak0001" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="mailto:rochakprajapati0001@gmail.com">
+    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
+</p>
+
+---
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
+</p>
 
