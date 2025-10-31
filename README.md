@@ -5,6 +5,10 @@
   <img src="https://komarev.com/ghpvc/?username=rochak0001&label=Profile%20Views&color=0e75b6&style=flat" alt="rochak0001" />
 </p>
 
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
+</p>
+
 ---
 
 ### 👨‍💻 About Me  
@@ -12,8 +16,8 @@
 - 🎓 Pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
 - ☕ Skilled in **Core Java and OOPs**  
 - 💻 Focused on **Data Structures & Algorithms (DSA)**  
-- 🧩 Solving problems on **LeetCode** & **GFG**  
-- 🌱 Exploring **Backend Development** (Spring Boot, APIs)  
+- 🧩 Solving problems on **LeetCode** & **GeeksforGeeks (GFG)**  
+- 🌱 Exploring **Backend Development (Spring Boot, REST APIs)**  
 - 💬 Ask me about **Java, DSA, and Problem Solving**  
 - ⚡ Fun fact: *I love turning logic into working code!*  
 
@@ -33,7 +37,7 @@
 
 ---
 
-### 🧠 My Focus
+### 🧠 My Focus  
 
 > “I believe mastering Data Structures and Algorithms builds the foundation of great software engineering.”
 
@@ -45,11 +49,13 @@
 
 ---
 
-### 💡 Coding Animation  
+### 💡 Coding Vibes  
 
 <p align="center">
-  <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="400" alt="coding gif"/>
+  <img src="https://raw.githubusercontent.com/rochak0001/rochak0001/main/assets/coding.gif" alt="Coding animation" width="500"/>
 </p>
+
+*(Tip: Add a cool developer GIF inside an `assets/` folder in your repo and replace the link above.)*
 
 ---
 
@@ -78,6 +84,16 @@
 
 ---
 
+### 🚀 Featured Projects  
+
+| Project | Description | Tech Stack | Link |
+|----------|--------------|-------------|------|
+| 🧮 **DSA Tracker** | Track solved problems from LeetCode & GFG | Java, MySQL | [Repo](https://github.com/rochak0001/dsa-tracker) |
+| ☕ **Java Notes App** | Simple CRUD app using OOPs & File Handling | Java | [Repo](https://github.com/rochak0001/java-notes) |
+| 🌐 **Portfolio Website** | Personal portfolio site | HTML, CSS, JS | [Repo](https://github.com/rochak0001/portfolio) |
+
+---
+
 ### 🧩 My Coding Philosophy  
 
 > 💭 *Good code is not just about syntax — it's about clarity, logic, and efficiency.*  
@@ -102,3 +118,9 @@
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student" alt="Typing SVG" />
 </p>
 
+---
+
+<p align="center">
+  <b>“Consistency is what transforms average into excellence.”</b><br>
+  — Rochak Prajapati
+</p>
