@@ -1,96 +1,62 @@
-<h1 align="center">Hi 👋, I'm Rochak Prajapati</h1>
-<h3 align="center">B.Tech (CSE) 5th Sem | Java Developer (Core + OOPs) | DSA Enthusiast | Aspiring Software Engineer</h3>
+# Library Management System (Core Java + Custom DSA)
 
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=rochak0001&label=Profile%20Views&color=0e75b6&style=flat" alt="rochak0001" />
-</p>
+A console-based library management system written in plain Java, with **every core
+data structure implemented from scratch** (no `java.util.LinkedList`, `Stack`, `ArrayDeque`,
+or `TreeMap`) to demonstrate the underlying data structures directly rather than
+relying on the standard library to hide them.
 
----
+## What it demonstrates
 
-### 👨‍💻 About Me  
+| Feature | Data structure used | Why |
+|---|---|---|
+| Exact ISBN lookup | `HashMap<String, Book>` | O(1) average lookup |
+| Title search & sorted catalog listing | `BookCatalogBST` (hand-built BST) | O(log n) avg search, free in-order sort |
+| Master record of all books | `CustomLinkedList<Book>` | O(1) append, safe removal-by-match |
+| Reservation waitlist per book | `CustomQueue<Member>` | FIFO — first person to reserve is first served |
+| Undo last issue/return | `CustomStack<Action>` | LIFO — most recent action reverts first |
+| Catalog persistence | `java.io.BufferedReader` / `BufferedWriter` | Plain-text save/load between runs |
+| Domain errors | Custom checked exceptions (`BookNotFoundException`, `BookUnavailableException`) | Clear, typed failure handling instead of generic exceptions |
 
-- 🎓 I’m pursuing **B.Tech in Computer Science Engineering (5th Semester)**  
-- ☕ I’m skilled in **Core Java and OOPs**  
-- 💻 I’m deeply focused on **Data Structures & Algorithms (DSA)**  
-- 🧩 I spend most of my time solving **LeetCode** problems and learning **problem-solving techniques**  
-- 🌱 Exploring **Software Development** and **Backend Technologies (Spring Boot, APIs)**  
-- 💬 Ask me about **Java, DSA, or Problem Solving**  
-- ⚡ Fun fact: *I love turning logic into working code!*  
+## Project structure
 
----
+```
+src/library/
+  Book.java              - book record (isbn, title, author, copies)
+  Member.java             - library member
+  Action.java             - a reversible action, for the undo stack
+  LibraryExceptions.java  - BookNotFoundException, BookUnavailableException
+  CustomLinkedList.java   - hand-built singly linked list
+  CustomStack.java        - hand-built LIFO stack
+  CustomQueue.java        - hand-built FIFO queue
+  BookCatalogBST.java     - hand-built binary search tree (keyed by title)
+  Library.java            - core engine wiring the structures together
+  Main.java                - console menu (entry point)
+```
 
-### 💻 Languages and Tools  
+## Run it
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
-  <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white"/>
-  <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/>
-  <img src="https://img.shields.io/badge/VS%20Code-0078D4?style=for-the-badge&logo=visualstudiocode&logoColor=white"/>
-  <img src="https://img.shields.io/badge/IntelliJ%20IDEA-000000?style=for-the-badge&logo=intellijidea&logoColor=white"/>
-</p>
+Requires a JDK (17+ recommended).
 
----
+```bash
+cd src
+javac -d ../bin library/*.java
+cd ..
+java -cp bin library.Main
+```
 
-### 🧠 My Focus
+On first run it seeds a small demo catalog. Every run saves to `library_data.txt`
+in the working directory, which is loaded automatically next time.
 
-> “I believe mastering Data Structures and Algorithms builds the foundation of great software engineering.”
+## Example session
 
-📈 Currently:
-- 🔹 Solving problems on **LeetCode** and **GFG**
-- 🔹 Revising **Striver’s DSA Sheet**
-- 🔹 Learning **System Design basics**
-- 🔹 Working on small **Java + DSA projects**
+```
+1. Add book        2. Remove book
+3. Find by ISBN     4. Find by title
+5. List sorted      6. Issue book
+7. Return book      8. Undo last action
+9. Save             0. Save and exit
+```
 
----
-
-### 📊 GitHub Stats  
-
-<p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=rochak0001&show_icons=true&theme=tokyonight&hide_border=true" />
-  <img height="180em" src="https://github-readme-streak-stats.herokuapp.com/?user=rochak0001&theme=tokyonight&hide_border=true" />
-</p>
-
----
-
-### 🏆 Achievements  
-
-- 🥇 Solved 300+ DSA problems across LeetCode and GFG  
-- 💡 Strong understanding of **Java OOPs and Core Concepts**  
-- 🚀 Consistent learning habit & daily coding practice  
-- 🎯 Goal: To become a **Software Engineer at a top product-based company**
-
----
-
-### 📬 Connect with Me  
-
-<p align="left">
-  <a href="https://www.linkedin.com/in/rochak0001" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
-  </a>
-  <a href="mailto:rochakprajapati0001@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
-  </a>
-</p>
-
----
-
-### 🏅 GitHub Trophies  
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=rochak0001&theme=tokyonight&no-frame=true&row=1&column=6" alt="trophies"/>
-</p>
-
----
-
-### 🔥 Fun Section  
-
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=00F7FF&width=435&lines=Java+Developer;DSA+Enthusiast;Aspiring+Software+Engineer;B.Tech+(CSE)+Student)](https://git.io/typing-svg)
-
----
-
-### 🧩 My Coding Philosophy  
-
-> I believe good code is not just about syntax — it's about **clarity, logic, and efficiency.**  
-> I strive to improve every day, one problem and one line of code at a time.
+Try issuing the same title to more members than it has copies — the extra
+member is placed on the reservation queue, and returning a copy automatically
+hands it to whoever's been waiting longest.
