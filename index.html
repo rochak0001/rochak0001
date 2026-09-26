@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smart Traffic Routing System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1420; --panel:#141d2b; --panel2:#182233; --line:#243349;
+    --text:#e7edf5; --muted:#8ea0b8; --accent:#49d3c4; --accent2:#f0a868;
+    --danger:#e2645f; --node:#2c3e57; --node-edge:#3d5273;
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px;}
+  header{margin-bottom:22px;}
+  h1{font-size:26px;font-weight:700;margin:0 0 6px;letter-spacing:-0.01em;}
+  .sub{color:var(--muted);font-size:14px;line-height:1.5;max-width:640px;}
+  .grid{display:grid;grid-template-columns:1fr 320px;gap:18px;}
+  @media(max-width:860px){.grid{grid-template-columns:1fr;}}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;}
+  .panel h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 12px;font-weight:600;}
+  #canvasWrap{overflow-x:auto;}
+  svg{width:100%;height:auto;display:block;min-width:560px;}
+  .node circle{fill:var(--node);stroke:var(--node-edge);stroke-width:2;cursor:pointer;transition:fill .15s,stroke .15s;}
+  .node:hover circle{stroke:var(--accent);}
+  .node text{fill:var(--text);font-size:13px;font-weight:600;pointer-events:none;font-family:'JetBrains Mono',monospace;}
+  .node.start circle{fill:var(--accent);stroke:var(--accent);}
+  .node.end circle{fill:var(--accent2);stroke:var(--accent2);}
+  .node.start text,.node.end text{fill:#0d1420;}
+  .edge-label{fill:var(--muted);font-size:10px;font-family:'JetBrains Mono',monospace;}
+  .controls .row{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+  label.field-label{font-size:12px;color:var(--muted);font-weight:600;}
+  select,button{font-family:Inter,sans-serif;font-size:14px;border-radius:7px;border:1px solid var(--line);padding:9px 12px;background:var(--panel2);color:var(--text);cursor:pointer;}
+  select:focus-visible,button:focus-visible,.node circle:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  button{font-weight:600;}
+  button.primary{background:var(--accent);color:#062521;border-color:var(--accent);}
+  button.primary:hover{filter:brightness(1.08);}
+  button.ghost:hover{border-color:var(--accent);}
+  .hint{font-size:12.5px;color:var(--muted);line-height:1.5;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;}
+  .stat-line{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;border-bottom:1px dashed var(--line);}
+  .stat-line:last-child{border-bottom:none;}
+  .stat-line span:last-child{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--accent);}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line);}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+  td.num{font-family:'JetBrains Mono',monospace;}
+  tr.best td{color:var(--accent);}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12px;color:var(--muted);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  footer{margin-top:26px;color:var(--muted);font-size:12px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Smart Traffic Routing System</h1>
+    <p class="sub">A weighted city road network. Click any two intersections to route between them, compare Dijkstra, A*, and BFS, then simulate live congestion.</p>
+  </header>
+
+  <div class="grid">
+    <div class="panel" id="canvasWrap">
+      <h2>Road network</h2>
+      <svg id="graph" viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="legend">
+        <span><i class="dot" style="background:#2c3e57"></i>Intersection</span>
+        <span><i class="dot" style="background:#49d3c4"></i>Start</span>
+        <span><i class="dot" style="background:#f0a868"></i>Destination</span>
+        <span><i class="dot" style="background:#e2645f"></i>Heavy congestion</span>
+        <span><i class="dot" style="background:#49d3c4;width:16px;height:3px;border-radius:2px;"></i>Selected route</span>
+      </div>
+    </div>
+
+    <div class="panel controls">
+      <h2>Route controls</h2>
+      <div class="row">
+        <label class="field-label" for="algo">Routing algorithm</label>
+        <select id="algo">
+          <option value="dijkstra">Dijkstra's Algorithm</option>
+          <option value="astar">A* Search</option>
+          <option value="bfs">BFS (unweighted)</option>
+        </select>
+      </div>
+      <div class="row">
+        <button class="ghost" id="randomize">Simulate congestion</button>
+        <button class="ghost" id="reset">Reset selection</button>
+      </div>
+      <div class="hint" id="hint">Click a start intersection, then a destination, to calculate a route.</div>
+
+      <h2 style="margin-top:20px;">Selected route</h2>
+      <div id="stats">
+        <div class="stat-line"><span>Path cost</span><span>—</span></div>
+        <div class="stat-line"><span>Nodes explored</span><span>—</span></div>
+        <div class="stat-line"><span>Accuracy</span><span>—</span></div>
+        <div class="stat-line"><span>Est. travel time</span><span>—</span></div>
+      </div>
+
+      <h2 style="margin-top:20px;">Algorithm comparison</h2>
+      <table id="cmpTable">
+        <thead><tr><th>Algo</th><th>Cost</th><th>Explored</th><th>Acc.</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <footer>Built with Core Java-style graph logic, ported here as an interactive client-side simulation · Dijkstra · A* · BFS</footer>
+</div>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const nodes=[
+ {id:"A",x:90,y:90},{id:"B",x:290,y:70},{id:"C",x:500,y:90},{id:"D",x:720,y:80},
+ {id:"E",x:140,y:280},{id:"F",x:350,y:260},{id:"G",x:560,y:280},{id:"H",x:760,y:270},
+ {id:"I",x:110,y:460},{id:"J",x:330,y:480},{id:"K",x:560,y:460},{id:"L",x:770,y:450}
+];
+const nodeMap=Object.fromEntries(nodes.map(n=>[n.id,n]));
+const edgeDefs=[
+ ["A","B"],["B","C"],["C","D"],["A","E"],["B","F"],["C","G"],["D","H"],
+ ["E","F"],["F","G"],["G","H"],["E","I"],["F","J"],["G","K"],["H","L"],
+ ["I","J"],["J","K"],["K","L"],["B","E"],["C","F"],["D","G"]
+];
+function dist(a,b){return Math.hypot(nodeMap[a].x-nodeMap[b].x,nodeMap[a].y-nodeMap[b].y);}
+const edges=edgeDefs.map(([a,b])=>({a,b,base:Math.round(dist(a,b)/20),mult:1}));
+
+function adjacency(){
+  const adj={}; nodes.forEach(n=>adj[n.id]=[]);
+  edges.forEach(e=>{
+    const w=e.base*e.mult;
+    adj[e.a].push({to:e.b,w,edge:e});
+    adj[e.b].push({to:e.a,w,edge:e});
+  });
+  return adj;
+}
+
+function dijkstra(src,dst){
+  const adj=adjacency(); const dv={},prev={},visited=new Set();
+  nodes.forEach(n=>dv[n.id]=Infinity); dv[src]=0;
+  const pq=[[0,src]]; let explored=0;
+  while(pq.length){
+    pq.sort((a,b)=>a[0]-b[0]);
+    const [d,u]=pq.shift();
+    if(visited.has(u))continue; visited.add(u); explored++;
+    if(u===dst)break;
+    adj[u].forEach(({to,w})=>{
+      const nd=d+w;
+      if(nd<dv[to]){dv[to]=nd;prev[to]=u;pq.push([nd,to]);}
+    });
+  }
+  return {cost:dv[dst],path:buildPath(prev,src,dst),explored};
+}
+
+function astar(src,dst){
+  const adj=adjacency(); const dv={},prev={},visited=new Set();
+  const h=(n)=>dist(n,dst)/20;
+  nodes.forEach(n=>dv[n.id]=Infinity); dv[src]=0;
+  const pq=[[h(src),src]]; let explored=0;
+  while(pq.length){
+    pq.sort((a,b)=>a[0]-b[0]);
+    const [,u]=pq.shift();
+    if(visited.has(u))continue; visited.add(u); explored++;
+    if(u===dst)break;
+    adj[u].forEach(({to,w})=>{
+      const nd=dv[u]+w;
+      if(nd<dv[to]){dv[to]=nd;prev[to]=u;pq.push([nd+h(to),to]);}
+    });
+  }
+  return {cost:dv[dst],path:buildPath(prev,src,dst),explored};
+}
+
+function bfs(src,dst){
+  const adj=adjacency(); const prev={},visited=new Set([src]);
+  const q=[src]; let explored=0;
+  while(q.length){
+    const u=q.shift(); explored++;
+    if(u===dst)break;
+    adj[u].forEach(({to})=>{
+      if(!visited.has(to)){visited.add(to);prev[to]=u;q.push(to);}
+    });
+  }
+  const path=buildPath(prev,src,dst);
+  let cost=0;
+  const adjW=adjacency();
+  for(let i=0;i<path.length-1;i++){
+    const link=adjW[path[i]].find(l=>l.to===path[i+1]);
+    if(link)cost+=link.w;
+  }
+  return {cost, path, explored};
+}
+
+function buildPath(prev,src,dst){
+  if(src===dst)return[src];
+  if(!(dst in prev) && src!==dst) {
+    let cur=dst; const path=[dst];
+    while(cur!==src){ cur=prev[cur]; if(cur===undefined)return[]; path.unshift(cur); }
+    return path;
+  }
+  let cur=dst; const path=[dst];
+  while(cur!==src){ cur=prev[cur]; if(cur===undefined)return[]; path.unshift(cur); }
+  return path;
+}
+
+let start=null, end=null;
+const svg=document.getElementById("graph");
+
+function congColor(mult){
+  if(mult>2.2)return "#e2645f";
+  if(mult>1.5)return "#f0a868";
+  return "#3d5273";
+}
+
+function render(){
+  svg.innerHTML="";
+  const gEdges=document.createElementNS(NS,"g");
+  edges.forEach(e=>{
+    const a=nodeMap[e.a], b=nodeMap[e.b];
+    const line=document.createElementNS(NS,"line");
+    line.setAttribute("x1",a.x);line.setAttribute("y1",a.y);
+    line.setAttribute("x2",b.x);line.setAttribute("y2",b.y);
+    line.setAttribute("stroke",congColor(e.mult));
+    line.setAttribute("stroke-width",1.5+ (e.mult-1)*1.5);
+    gEdges.appendChild(line);
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+    const label=document.createElementNS(NS,"text");
+    label.setAttribute("x",mx);label.setAttribute("y",my-4);
+    label.setAttribute("class","edge-label");
+    label.textContent=(e.base*e.mult).toFixed(1);
+    gEdges.appendChild(label);
+  });
+  svg.appendChild(gEdges);
+
+  if(window.__lastPath && window.__lastPath.length>1){
+    const gPath=document.createElementNS(NS,"g");
+    for(let i=0;i<window.__lastPath.length-1;i++){
+      const a=nodeMap[window.__lastPath[i]], b=nodeMap[window.__lastPath[i+1]];
+      const line=document.createElementNS(NS,"line");
+      line.setAttribute("x1",a.x);line.setAttribute("y1",a.y);
+      line.setAttribute("x2",b.x);line.setAttribute("y2",b.y);
+      line.setAttribute("stroke","#49d3c4");
+      line.setAttribute("stroke-width",5);
+      line.setAttribute("stroke-linecap","round");
+      gPath.appendChild(line);
+    }
+    svg.appendChild(gPath);
+  }
+
+  const gNodes=document.createElementNS(NS,"g");
+  nodes.forEach(n=>{
+    const g=document.createElementNS(NS,"g");
+    g.setAttribute("class","node"+(n.id===start?" start":"")+(n.id===end?" end":""));
+    g.setAttribute("tabindex","0");
+    g.setAttribute("role","button");
+    g.setAttribute("aria-label","Intersection "+n.id);
+    const c=document.createElementNS(NS,"circle");
+    c.setAttribute("cx",n.x);c.setAttribute("cy",n.y);c.setAttribute("r",18);
+    const t=document.createElementNS(NS,"text");
+    t.setAttribute("x",n.x);t.setAttribute("y",n.y+4);t.setAttribute("text-anchor","middle");
+    t.textContent=n.id;
+    g.appendChild(c);g.appendChild(t);
+    g.addEventListener("click",()=>pick(n.id));
+    g.addEventListener("keydown",(ev)=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();pick(n.id);}});
+    gNodes.appendChild(g);
+  });
+  svg.appendChild(gNodes);
+}
+
+function pick(id){
+  if(!start || (start && end)){ start=id; end=null; window.__lastPath=null; }
+  else if(id!==start){ end=id; }
+  document.getElementById("hint").textContent = !start ? "Click a start intersection, then a destination, to calculate a route."
+    : !end ? "Start set to "+start+". Now click a destination intersection."
+    : "Route from "+start+" to "+end+".";
+  if(start && end) compute();
+  render();
+}
+
+function fmt(n){return Number.isFinite(n)? n.toFixed(1):"—";}
+
+function compute(){
+  const results={dijkstra:dijkstra(start,end),astar:astar(start,end),bfs:bfs(start,end)};
+  const optimal=results.dijkstra.cost;
+  const algo=document.getElementById("algo").value;
+  const r=results[algo];
+  window.__lastPath=r.path;
+
+  const acc=(c)=> optimal>0 ? Math.min(100,(optimal/c*100)) : 100;
+  const stats=document.getElementById("stats");
+  stats.innerHTML=`
+    <div class="stat-line"><span>Path cost</span><span>${fmt(r.cost)}</span></div>
+    <div class="stat-line"><span>Nodes explored</span><span>${r.explored}</span></div>
+    <div class="stat-line"><span>Accuracy</span><span>${acc(r.cost).toFixed(0)}%</span></div>
+    <div class="stat-line"><span>Est. travel time</span><span>${fmt(r.cost*2)} min</span></div>
+  `;
+
+  const tbody=document.querySelector("#cmpTable tbody");
+  tbody.innerHTML="";
+  [["dijkstra","Dijkstra"],["astar","A*"],["bfs","BFS"]].forEach(([key,label])=>{
+    const row=results[key];
+    const tr=document.createElement("tr");
+    if(key===algo)tr.classList.add("best");
+    tr.innerHTML=`<td>${label}</td><td class="num">${fmt(row.cost)}</td><td class="num">${row.explored}</td><td class="num">${acc(row.cost).toFixed(0)}%</td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById("algo").addEventListener("change",()=>{ if(start&&end)compute(); render(); });
+document.getElementById("randomize").addEventListener("click",()=>{
+  edges.forEach(e=>{ e.mult = Math.random()<0.45 ? +(1+Math.random()*2).toFixed(2) : 1; });
+  if(start&&end)compute();
+  render();
+});
+document.getElementById("reset").addEventListener("click",()=>{
+  start=null;end=null;window.__lastPath=null;
+  document.getElementById("hint").textContent="Click a start intersection, then a destination, to calculate a route.";
+  document.getElementById("stats").innerHTML=`
+    <div class="stat-line"><span>Path cost</span><span>—</span></div>
+    <div class="stat-line"><span>Nodes explored</span><span>—</span></div>
+    <div class="stat-line"><span>Accuracy</span><span>—</span></div>
+    <div class="stat-line"><span>Est. travel time</span><span>—</span></div>`;
+  document.querySelector("#cmpTable tbody").innerHTML="";
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
